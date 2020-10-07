@@ -10,3 +10,9 @@
 //    search for a person, create a new contact, or delete 
 //    an existing contact. (Also include a "Quit")  
 
+#include <iostream>
+using namespace std;
+
+int main() {
+    cout<<"hello, world"<<endl;
+}
