@@ -26,14 +26,13 @@ class Contact {
       string contactLastName;
       int contactNumber; //int variable for phone number
       Contact(){
-
       }
       Contact(string s, string t, int x) {
          contactFirstName = s;
          contactLastName = t;
          contactNumber = x;
       }
-
+    
  };
 
  //method to create object
@@ -41,29 +40,31 @@ class Contact {
       -populate up to 70% capacity in the array before creating a new array
       -there should be pointers of pointers to keep both the index and the data in heap
    */
-   
-   void createArray(string s, string t, int x) {
-      Contact** cont;
-      cont = new Contact*[100];
-      for(int i=0; i <100; i++) {
-         cont[i] = new Contact;
-         //cout<<cont[i]<<"\n";
-      }
+void createArray(string s, string t, int x) {
+    Contact** cont; //pointer pointer, points to array which points to objects
+    cont = new Contact*[100]; 
+    for(int i=0; i <100; i++) { //create array that points to 100 objects
+        cont[i] = new Contact; //calls constructor to create the object
+        string output = cont[i].s<<" "<<cont[i].t<<" "<<cont[i].x;
+        cout<<output<<"\n";
+    }     
+}
+    
 
-   }
+
 
 int main() {
-      //file i/o
-      string s;
-      string t;
-      int x;
-      ifstream file;
-      file.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt");
-      while(!file.eof()) {
+    //file i/o
+    string s;
+    string t;
+    int x;
+    ifstream file;
+    file.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt");
+    while(!file.eof()) {
         file>>s>>t>>x;
         createArray(s, t, x);
         //cout<<s<<" "<<t<<" "<<x<<"\n"; //cout to test functionality of i/o stream
-      }
+    }
     return 0;
    }   
    
