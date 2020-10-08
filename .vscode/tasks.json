@@ -1,6 +1,7 @@
 {
 	"version": "2.0.0",
 	"tasks": [
+<<<<<<< HEAD
 	  {
 		"type": "shell",
 		"label": "cl.exe build active file",
@@ -20,3 +21,26 @@
 	  }
 	]
   }
+=======
+		{
+			"type": "shell",
+			"label": "cl.exe build active file",
+			"command": "cl.exe",
+			"args": [
+				"/Zi",
+				"/EHsc",
+				"/Fe:",
+				"${fileDirname}\\${fileBasenameNoExtension}.exe",
+				"${file}"
+			],
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			}
+		}
+	]
+}
+>>>>>>> 5b205d2d16661d8f062c779a17bb351c97566428
