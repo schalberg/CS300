@@ -45,9 +45,12 @@ class Contact {
         cont = new Contact*[size]; 
         for(int i=0; i <size; i++) { //create array that points to 100 objects
             cont[i] = new Contact(output);
-            cout<<cont[i]<<"\n";
+            
         }
     }
+   
+   //write the add method to match to the first empty index of the array, redirected to the 
+   //contact object...since it's a pointer, should I use a reference to find the array?
 
    //void addRecord(string s, string r, int x){
        //int indxCount = 0;
@@ -55,6 +58,19 @@ class Contact {
    //}
    
    int main() {
+      
+      
+      //file i/o
+      string s; //parse file data for first name
+      string t; //parse file data for last name
+      int x; //parse file data for phone number
+      ifstream file; 
+      file.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt"); //open file as directed
+      while(!file.eof()) { //sets exit condition to continue until end of file is reached
+         file >> s >> t >> x; //data in first name/last name/phone# format; this command directs the data into the corresponding var's
+         string output = s + " " + t + " " + to_string(x);
+         createArray(output); //create the initial array
+      }
       char selection;
       cout<<"***MY PHONEBOOK APPLICATION***"<<"\n";
       cout<<"Please choose an operation:"<<"\n";
@@ -63,33 +79,25 @@ class Contact {
       selection = toupper(selection);
       if(selection == 'A'){
          cout<<"You've chosen Add";
+         //call add method
       } else if(selection == 'S') {
          cout<<"You've chosen Search";
+         //call search method
       } else if(selection == 'D'){
          cout<<"You've chosen Delete";
+         //call delete method
       } else if(selection == 'L'){
          cout<<"You've chosen List";
+         //call list method
       } else if(selection == 'Q'){
          cout<<"You've chosen Quit. ";
-      } else {
+         //call quit method
+      } else {  //addresses invalid input
          cout<<"Invalid selection."<<"\n";
          cout<<"Please choose an operation:"<<"\n";
          cout<<"A(Add) | S (Search) | D(Delete) |L(List) |Q(Quit):";
       }
-      //}
-      //file i/o
-      string s; //parse file data for first name
-      string t; //parse file data for last name
-      int x; //parse file data for phone number
-      ifstream file; 
-      file.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt"); //open file as directed
-      while(!file.eof()) { //sets exit condition to continue until end of file is reached
-        file >> s >> t >> x; //data in first name/last name/phone# format; this command directs the data into the corresponding var's
-        string output = s + " " + t + " " + to_string(x);
-        createArray(output); //create the initial array
-        //addData(s, t, x);
-        //cout<<s<<" "<<t<<" "<<x<<"\n"; //cout to test functionality of i/o stream
-      }
+      
       return 0;
    }   
    
