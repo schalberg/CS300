@@ -24,32 +24,38 @@ using namespace std;
 class Contact {
    public: 
       Contact();
-      Contact(string, string, int);
+      Contact(string);
       int size;
-      string fName;
-      string lName;
-      int phone;
-      //createArray(int);
+      //string fName;
+      //string lName;
+      //int phone;
+      string person;
+      
 };
    Contact::Contact(){
    }
    
-   Contact::Contact(string s, string r, int x){
-      fName = s;
-      lName = r;
-      phone = x;
+   Contact::Contact(string s){
+      person = s;
    }
 
-   void createArray(int size){
-      Contact** cont; //pointer pointer, points to array which points to objects
-      cont = new Contact*[size]; 
-      for(int i=0; i <size; i++) { //create array that points to 100 objects
-        cont[i] = new Contact;
-      }
-   }
+   void createArray(string output){
+        int size = 100;
+        Contact** cont; //pointer pointer, points to array which points to objects
+        cont = new Contact*[size]; 
+        for(int i=0; i <size; i++) { //create array that points to 100 objects
+            cont[i] = new Contact(output);
+            cout<<cont[i]<<"\n";
+        }
+    }
+
+   //void addRecord(string s, string r, int x){
+       //int indxCount = 0;
+       //cont[indxCount] = s + " " + r + " " + x;
+   //}
    
    int main() {
-      createArray(100); //create the initial array
+      
       //file i/o
       string s; //parse file data for first name
       string t; //parse file data for last name
@@ -58,6 +64,8 @@ class Contact {
       file.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt"); //open file as directed
       while(!file.eof()) { //sets exit condition to continue until end of file is reached
         file >> s >> t >> x; //data in first name/last name/phone# format; this command directs the data into the corresponding var's
+        string output = s + " " + t + " " + to_string(x);
+        createArray(output); //create the initial array
         //addData(s, t, x);
         //cout<<s<<" "<<t<<" "<<x<<"\n"; //cout to test functionality of i/o stream
       }
