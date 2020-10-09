@@ -18,54 +18,49 @@
 
 #include <iostream>
 #include <fstream>
+#include <sstream>
 using namespace std;
 
 class Contact {
-   public:
-      string contactFirstName; //string variable for the name of the contact
-      string contactLastName;
-      int contactNumber; //int variable for phone number
-      Contact(){
+   public: 
+      Contact();
+      Contact(string, string, int);
+      int size;
+      string fName;
+      string lName;
+      int phone;
+      //createArray(int);
+};
+   Contact::Contact(){
+   }
+   
+   Contact::Contact(string s, string r, int x){
+      fName = s;
+      lName = r;
+      phone = x;
+   }
+
+   void createArray(int size){
+      Contact** cont; //pointer pointer, points to array which points to objects
+      cont = new Contact*[size]; 
+      for(int i=0; i <size; i++) { //create array that points to 100 objects
+        cont[i] = new Contact;
       }
-      Contact(string s, string t, int x) {
-         contactFirstName = s;
-         contactLastName = t;
-         contactNumber = x;
-      }
-    
- };
-
- //method to create object
-   /* these arrays should be a reasonable size, maybe 100 items?
-      -populate up to 70% capacity in the array before creating a new array
-      -there should be pointers of pointers to keep both the index and the data in heap
-   */
-void createArray(string s, string t, int x) {
-    Contact** cont; //pointer pointer, points to array which points to objects
-    cont = new Contact*[100]; 
-    for(int i=0; i <100; i++) { //create array that points to 100 objects
-        cont[i] = new Contact; //calls constructor to create the object
-        string output = cont[i].s<<" "<<cont[i].t<<" "<<cont[i].x;
-        cout<<output<<"\n";
-    }     
-}
-    
-
-
-
-int main() {
-    //file i/o
-    string s;
-    string t;
-    int x;
-    ifstream file;
-    file.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt");
-    while(!file.eof()) {
-        file>>s>>t>>x;
-        createArray(s, t, x);
+   }
+   
+   int main() {
+      createArray(100); //create the initial array
+      //file i/o
+      string s; //parse file data for first name
+      string t; //parse file data for last name
+      int x; //parse file data for phone number
+      ifstream file; 
+      file.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt"); //open file as directed
+      while(!file.eof()) { //sets exit condition to continue until end of file is reached
+        file >> s >> t >> x; //data in first name/last name/phone# format; this command directs the data into the corresponding var's
+        //addData(s, t, x);
         //cout<<s<<" "<<t<<" "<<x<<"\n"; //cout to test functionality of i/o stream
-    }
-    return 0;
+      }
+      return 0;
    }   
    
-   //search method? should this be integrated into the 
