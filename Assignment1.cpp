@@ -55,7 +55,28 @@ class Contact {
    //}
    
    int main() {
-      
+      char selection;
+      cout<<"***MY PHONEBOOK APPLICATION***"<<"\n";
+      cout<<"Please choose an operation:"<<"\n";
+      cout<<"A(Add) | S (Search) | D(Delete) |L(List) |Q(Quit):";
+      cin>>selection;
+      selection = toupper(selection);
+      if(selection == 'A'){
+         cout<<"You've chosen Add";
+      } else if(selection == 'S') {
+         cout<<"You've chosen Search";
+      } else if(selection == 'D'){
+         cout<<"You've chosen Delete";
+      } else if(selection == 'L'){
+         cout<<"You've chosen List";
+      } else if(selection == 'Q'){
+         cout<<"You've chosen Quit. ";
+      } else {
+         cout<<"Invalid selection."<<"\n";
+         cout<<"Please choose an operation:"<<"\n";
+         cout<<"A(Add) | S (Search) | D(Delete) |L(List) |Q(Quit):";
+      }
+      //}
       //file i/o
       string s; //parse file data for first name
       string t; //parse file data for last name
