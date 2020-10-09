@@ -24,27 +24,29 @@ using namespace std;
 class Contact {
    public: 
       Contact();
-      Contact(string);
+      Contact(string, string, int);
       int size;
-      //string fName;
-      //string lName;
-      //int phone;
+      string fName;
+      string lName;
+      int phone;
       string person;
       
 };
    Contact::Contact(){
    }
    
-   Contact::Contact(string s){
-      person = s;
+   Contact::Contact(string s, string t, int x){
+      fName = s;
+      lName = t;
+      phone = x;
    }
 
-   void createArray(string output){
+   void createArray(){
         int size = 100;
         Contact** cont; //pointer pointer, points to array which points to objects
         cont = new Contact*[size]; 
         for(int i=0; i <size; i++) { //create array that points to 100 objects
-            cont[i] = new Contact(output);
+            cont[i] = new Contact();
             
         }
     }
@@ -52,9 +54,25 @@ class Contact {
    //write the add method to match to the first empty index of the array, redirected to the 
    //contact object...since it's a pointer, should I use a reference to find the array?
 
-   //void addRecord(string s, string r, int x){
-       //int indxCount = 0;
-       //cont[indxCount] = s + " " + r + " " + x;
+   void addRecord(string s, string r, int x){
+      int indxCount = 0;
+      std::stringstream ss;
+      ss << s << " " << r << " " << x;
+      //*cont[indxCount] = ss.str();
+     // indxCount+=4; // need to increment by 4 as the int in the array takes up 4 bytes of memory
+   }
+
+   //void searchRecord(){
+      //search the array for data
+   //}
+
+   //void deleteRecord(){
+      //get address of data (&) with pointer
+      //set detail to null
+   //}
+   
+   //void listRecords(){
+      //print out the records
    //}
    
    int main() {
@@ -68,8 +86,8 @@ class Contact {
       file.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt"); //open file as directed
       while(!file.eof()) { //sets exit condition to continue until end of file is reached
          file >> s >> t >> x; //data in first name/last name/phone# format; this command directs the data into the corresponding var's
-         string output = s + " " + t + " " + to_string(x);
-         createArray(output); //create the initial array
+         //string output = s + " " + t + " " + to_string(x); //commented out, need to preserve the object's 3 fields
+         createArray(); //create the initial array
       }
       char selection;
       cout<<"***MY PHONEBOOK APPLICATION***"<<"\n";
