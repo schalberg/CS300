@@ -1,3 +1,7 @@
+//Adam Schalberg
+//CS300 Fall 2020
+//Professor Serce
+//Assignment 2 
 
 #include <iostream>
 using namespace std;
