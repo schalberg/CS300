@@ -1,3 +1,8 @@
+//Adam Schalberg
+//CS300 Fall 2020
+//Professor Serce
+//Assignment 2-client file
+
 #include <iostream>
 include "Book.h"
 
