@@ -8,53 +8,61 @@ using namespace std;
 
 class Book{
     private:
-        string title;
-        string authors;
-        string publisher;
+        string title, authors, publisher;
         int isbn;
 
     public:
-        book(){
+        void setTitle(string);
+        void setAuthors(string);
+        void setPublisher(string);
+        void setIsbn(int);
+        string getTitle();
+        string getAuthors();
+        string getPublisher();
+        int getIsbn();
+};
+
+        Book::Book(){
 
         }
 
-        book(string, string, string, int){
+        Book::Book(string, string, string, int){
 
         }
 
-        ~book() {
+        Book::~Book() {
             //need a for loop
         }
 
-        void setTitle(string _title){
+        void Book::setTitle(string _title){
             title = _title;
         }
 
-        void setAuthors(string _authors) {
+        void Book::setAuthors(string _authors) {
             authors = _authors;
         }
 
-        void setPublisher(string _publisher) {
+        void Book::setPublisher(string _publisher) {
             publisher = _publisher;
         }
 
-        void setIsbn(int _isbn){
+        void Book::setIsbn(int _isbn){
             isbn = _isbn;
         }
 
-        string getTitle(){
+        string Book::getTitle(){
             return title;
         }
 
-        string getAuthors() {
+        string Book::getAuthors() {
             return authors;
         }
 
-        string getPublisher(){
+        string Book::getPublisher(){
             return publisher;
         }
 
-        int getIsbn(){
+        int Book::getIsbn(){
             return isbn;
         }
 

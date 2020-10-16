@@ -3,8 +3,33 @@
 //Professor Serce
 //Assignment 2-client file
 
+class BookstoreManager {
+        private:
+            Book *book = new Book;
+            int count; //number of elements
+        public:
+            BookstoreManager(){
+                book = new Book[1000000]; //create array of book objects
+                count = 0;
+            }
+            void add(Book b){
+                book[count] = b;
+                count++;
+            }
+            void search(Book b){
+
+            }
+            void delete(Book b){
+
+            }
+            void print() {
+
+            }
+}
+
 #include <iostream>
-include "Book.h"
+#include "Book.h"
+#include "BookstoreManager.h"
 
 using namespace std;
 
