@@ -24,7 +24,7 @@
 using namespace std;
 
 int main(){
-   Phonebook pManager ();
+   Phonebook pManager;
    string first;
    string last;
    string name;
@@ -34,9 +34,8 @@ int main(){
    while(!inFile.eof()){
       inFile >>first>>last>>phone;
       name = first+" "+last;
-      cout<<name<<" "<<" "<<phone <<"\n";
       Person p(name, phone);
-      Phonebook.add(p);
+      pManager.addPerson(p);
    }
    
 
