@@ -18,10 +18,88 @@
 
 #include <iostream>
 #include <fstream>
-#include <sstream>
+#include "Person.h"
+#include "PhonebookManager.h"
+
 using namespace std;
 
-class Contact {
+int main(){
+   Phonebook pManager ();
+   string first;
+   string last;
+   string name;
+   int phone;
+   ifstream inFile;
+   inFile.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebook.txt");
+   while(!inFile.eof()){
+      inFile >>first>>last>>phone;
+      name = first+" "+last;
+      cout<<name<<" "<<" "<<phone <<"\n";
+      Person p(name, phone);
+      Phonebook.add(p);
+   }
+   
+
+   return 0;
+}
+
+/*string _name, first, last;
+int _phone;
+/*PhonebookManager pManager ();
+
+void userSelection(){
+   char selection;
+   cout<<"***MY PHONEBOOK APPLICATION***"<<"\n";
+   cout<<"Please choose an operation:"<<"\n";
+   cout<<"A(Add) | S (Search) | D(Delete) |L(List) |Q(Quit):";
+   cin>>selection;
+   selection = toupper(selection);
+   if(selection == 'A'){
+      cout << "Enter name and phone: ";
+      cin>> _name >> _phone;
+      Person p(_name, _phone);
+      pManager.addPerson(p);
+   } else if(selection == 'S') {
+      cout<<"Enter name: ";
+      cin >> _name;
+      pManager.searchPerson(_name);
+   } else if(selection == 'D'){
+      cout<<"You've chosen Delete";
+         //call delete method
+      //} else if(selection == 'L'){
+      //   cout<<"You've chosen List";
+         //call list method
+      } else if(selection == 'Q'){
+         cout<<"You've chosen Quit. ";
+         //call quit method
+      } else {  //addresses invalid input
+         cout<<"Invalid selection."<<"\n";
+         userSelection();
+      }
+}*/
+
+/*int main() {
+   PhonebookManager pManager();
+   ifstream file;
+   file.open("C:Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt");
+   while(!file.eof()){
+      string first, last;
+      cin >> first >> last;
+      _name = first + " " + last;
+      cin >> _phone;
+      Person p = new Person(_name, _phone);
+      pManager().addPerson(p);
+   }
+   
+
+   userSelection();
+   
+    
+
+    return 0;
+}
+
+/*class Contact {
    public: 
       Contact();
       Contact(string, string, int);
@@ -117,5 +195,5 @@ class Contact {
       }
       
       return 0;
-   }   
+   }   */
    
