@@ -89,6 +89,7 @@ int main(){
       userSelection();
    } else if(selection == 'Q'){
       cout<<"You've chosen Quit. ";
+      pManager.~Phonebook();
       //call quit method
    } else {  //addresses invalid input
       cout<<"Invalid selection."<<"\n";

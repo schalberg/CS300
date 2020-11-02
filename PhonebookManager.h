@@ -12,11 +12,14 @@ class Phonebook{
    private:
       Person *pBook;
       int count; 
-      int capacity = 1000000;
+      int capacity = 1000000; //default array size
    public:
-      Phonebook(){
+      Phonebook(){ //create new array
          pBook = new Person[capacity];
          count = 0;
+      }
+      ~Phonebook(){ //destructor
+         delete[] pBook;
       }
       void resizeArray(){
           capacity = capacity * 2; //double the potential size of the array
@@ -55,6 +58,9 @@ class Phonebook{
             }
           }
       }
+      //take user input, search the array for an object with the matching name and 
+      //delete it by shifting the index of all elements with an index that is higher
+      //down by one index value, overwriting the object targeted for deletion
       void deletePerson(string _name) {
           int index = 0;
           while (pBook[index].getName() != _name) {
@@ -63,8 +69,7 @@ class Phonebook{
           for(int i = index; i < count; i++) {
               pBook[i] = pBook[i+1];
           }
-                
-      }
+     }
 };
 
 
