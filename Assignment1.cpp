@@ -23,12 +23,16 @@
 
 using namespace std;
 
+void userSelection(){
+   cout<<"Please choose an operation:"<<"\n";
+   cout<<"A(Add) | S (Search) | D(Delete) |L(List) |Q(Quit):";
+}   
+
 int main(){
    Phonebook pManager;
-   string first;
-   string last;
-   string name;
+   string first, last, name;
    int phone;
+   char selection;
    ifstream inFile;
    inFile.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebook.txt");
    while(!inFile.eof()){
@@ -37,162 +41,60 @@ int main(){
       Person p(name, phone);
       pManager.addPerson(p);
    }
-   
+   cout<<"***MY PHONEBOOK APPLICATION***"<<"\n";
+   userSelection();
+   cin>>selection;
+   selection = toupper(selection);
+   if(selection == 'A'){
+      //prompt the user for the name and phone number of the person to add
+      //to the array, call the add method
+      cout << "Enter name: ";
+      cin >> name;
+      cout << "Enter phone: ";
+      cin >> phone;
+      Person p(name, phone);
+      pManager.addPerson(p);
+      userSelection();
+   } else if(selection == 'S') {
+      //prompt the user to provide a name, scan the contents of the array for that 
+      //name and return the phone number associated with that name
+      string a, b, searchName;
+      string result;
+      char temp;
+      cout << "Enter name: ";
+      cin >> a >> b;
+      searchName = a + " " + b;
+      //ensure that user input is formatted to match data in array
+      for(int i = 0; i < searchName.length(); i++){ 
+         temp = searchName[i];
+         temp = toupper(temp);
+         result += temp;
+      }
+      pManager.search(result);
+      userSelection();
+      //prompt the user for a name, search the array for that name and remove it by shifting
+      //each object w/in the array down one index, overwriting the selected record in the process
+   } else if(selection == 'D'){
+         string a, b, _name;
+         cout << "Enter name: ";
+         cin >> a >> b;
+         _name = a + " " + b;
+         pManager.deletePerson(_name);
+         cout << "Deleted." << endl;
+         userSelection();
+         //call delete method
+   } else if(selection == 'L'){
+      //call print method, printing out the contents of the array
+      pManager.print();
+      userSelection();
+   } else if(selection == 'Q'){
+      cout<<"You've chosen Quit. ";
+      //call quit method
+   } else {  //addresses invalid input
+      cout<<"Invalid selection."<<"\n";
+      userSelection();
+   }
 
    return 0;
 }
 
-/*string _name, first, last;
-int _phone;
-/*PhonebookManager pManager ();
-
-void userSelection(){
-   char selection;
-   cout<<"***MY PHONEBOOK APPLICATION***"<<"\n";
-   cout<<"Please choose an operation:"<<"\n";
-   cout<<"A(Add) | S (Search) | D(Delete) |L(List) |Q(Quit):";
-   cin>>selection;
-   selection = toupper(selection);
-   if(selection == 'A'){
-      cout << "Enter name and phone: ";
-      cin>> _name >> _phone;
-      Person p(_name, _phone);
-      pManager.addPerson(p);
-   } else if(selection == 'S') {
-      cout<<"Enter name: ";
-      cin >> _name;
-      pManager.searchPerson(_name);
-   } else if(selection == 'D'){
-      cout<<"You've chosen Delete";
-         //call delete method
-      //} else if(selection == 'L'){
-      //   cout<<"You've chosen List";
-         //call list method
-      } else if(selection == 'Q'){
-         cout<<"You've chosen Quit. ";
-         //call quit method
-      } else {  //addresses invalid input
-         cout<<"Invalid selection."<<"\n";
-         userSelection();
-      }
-}*/
-
-/*int main() {
-   PhonebookManager pManager();
-   ifstream file;
-   file.open("C:Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt");
-   while(!file.eof()){
-      string first, last;
-      cin >> first >> last;
-      _name = first + " " + last;
-      cin >> _phone;
-      Person p = new Person(_name, _phone);
-      pManager().addPerson(p);
-   }
-   
-
-   userSelection();
-   
-    
-
-    return 0;
-}
-
-/*class Contact {
-   public: 
-      Contact();
-      Contact(string, string, int);
-      int size;
-      string fName;
-      string lName;
-      int phone;
-      string person;
-      
-};
-   Contact::Contact(){
-   }
-   
-   Contact::Contact(string s, string t, int x){
-      fName = s;
-      lName = t;
-      phone = x;
-   }
-
-   void createArray(){
-        int size = 100;
-        Contact** cont; //pointer pointer, points to array which points to objects
-        cont = new Contact*[size]; 
-        for(int i=0; i <size; i++) { //create array that points to 100 objects
-            cont[i] = new Contact();
-            
-        }
-    }
-   
-   //write the add method to match to the first empty index of the array, redirected to the 
-   //contact object...since it's a pointer, should I use a reference to find the array?
-
-   void addRecord(string s, string r, int x){
-      int indxCount = 0;
-      std::stringstream ss;
-      ss << s << " " << r << " " << x;
-      //*cont[indxCount] = ss.str();
-     // indxCount+=4; // need to increment by 4 as the int in the array takes up 4 bytes of memory
-   }
-
-   //void searchRecord(){
-      //search the array for data
-   //}
-
-   //void deleteRecord(){
-      //get address of data (&) with pointer
-      //set detail to null
-   //}
-   
-   //void listRecords(){
-      //print out the records
-   //}
-   
-   int main() {
-      
-      
-      //file i/o
-      string s; //parse file data for first name
-      string t; //parse file data for last name
-      int x; //parse file data for phone number
-      ifstream file; 
-      file.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebooktest.txt"); //open file as directed
-      while(!file.eof()) { //sets exit condition to continue until end of file is reached
-         file >> s >> t >> x; //data in first name/last name/phone# format; this command directs the data into the corresponding var's
-         //string output = s + " " + t + " " + to_string(x); //commented out, need to preserve the object's 3 fields
-         createArray(); //create the initial array
-      }
-      char selection;
-      cout<<"***MY PHONEBOOK APPLICATION***"<<"\n";
-      cout<<"Please choose an operation:"<<"\n";
-      cout<<"A(Add) | S (Search) | D(Delete) |L(List) |Q(Quit):";
-      cin>>selection;
-      selection = toupper(selection);
-      if(selection == 'A'){
-         cout<<"You've chosen Add";
-         //call add method
-      } else if(selection == 'S') {
-         cout<<"You've chosen Search";
-         //call search method
-      } else if(selection == 'D'){
-         cout<<"You've chosen Delete";
-         //call delete method
-      } else if(selection == 'L'){
-         cout<<"You've chosen List";
-         //call list method
-      } else if(selection == 'Q'){
-         cout<<"You've chosen Quit. ";
-         //call quit method
-      } else {  //addresses invalid input
-         cout<<"Invalid selection."<<"\n";
-         cout<<"Please choose an operation:"<<"\n";
-         cout<<"A(Add) | S (Search) | D(Delete) |L(List) |Q(Quit):";
-      }
-      
-      return 0;
-   }   */
-   

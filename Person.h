@@ -3,6 +3,9 @@
 // Professor Serce
 //Assignment 1, due 10/9/2020
 
+#ifndef PERSON_H
+#define PERSON_H
+
 #include <iostream>
 using namespace std;
 
@@ -30,10 +33,13 @@ class Person {
         int getPhone(){
             return phone;
         }
+    //overload method to allow the printing of the name and phone 
+    //fields of the person objects
     friend ostream& operator<<(ostream& os, Person& _p){
         os << _p.name << " " << _p.phone << endl;
         return os;
     }
 };
 
+#endif
 

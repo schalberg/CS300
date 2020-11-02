@@ -3,8 +3,6 @@
 // Professor Serce
 //Assignment 1, due 10/9/2020
 
-
-
 #include <iostream>
 #include "Person.h"
 
@@ -12,7 +10,7 @@ using namespace std;
 
 class Phonebook{
    private:
-      Phonebook *pBook;
+      Person *pBook;
       int count; 
       int capacity = 1000000;
    public:
@@ -20,48 +18,55 @@ class Phonebook{
          pBook = new Person[capacity];
          count = 0;
       }
+      void resizeArray(){
+          capacity = capacity * 2; //double the potential size of the array
+          Person *pBookTemp;
+          pBookTemp = new Person[capacity]; //create a temporary array with double the size of the original
+          for(int i = 0; i < count; i++) { //run a loop to migrate the data from the original array to the new array
+              pBookTemp[i] = pBook[i]; 
+          }
+          //make the original array match the new array, effectively doubling size of original while maintaining the
+          //original's data
+          pBook = pBookTemp; 
+          delete [] pBookTemp; //delete the now unnecessary temp array
+      }
+      //take the created person object, insert it into array
       void addPerson(Person _p){
-         pBook[count] =  _p;
-         count++;
+         if(count < (capacity * .7)){ //ensure there is enough space in the array for the new element
+            pBook[count] =  _p;
+            count++;
+         } else { //if not, resize the array then add the new element
+             resizeArray();
+             pBook[count] =  _p;
+             count++;
+         }
+      }
+      //printing out the contents of the array
+      void print(){
+        for(int i = 0; i<count; i++)
+            cout<<pBook[i].getName() <<pBook[i].getPhone() <<endl;
+      }
+      //check the value of a string against the name field of person object
+      //print the phone number associated with that name to console
+      void search(string _name){
+          for(int i = 0; i<count; i++){
+            if(pBook[i].getName() == _name) {
+                cout << "Phone Number: " << pBook[i].getPhone() << endl;
+            }
+          }
+      }
+      void deletePerson(string _name) {
+          int index = 0;
+          while (pBook[index].getName() != _name) {
+            index++;
+          }
+          for(int i = index; i < count; i++) {
+              pBook[i] = pBook[i+1];
+          }
+                
       }
 };
 
-/*class PhonebookManager{
-    private:
-        Book *phonebook;
-        int count; //track the current number of elements
-        int capacity = 1000000;
-    public:
-        PhonebookManager(){
-            phonebook = new Book[capacity]; //keeps the array of all person objects
-            count = 0;
-        }
-        void addPerson(Person p){
-            phonebook[count]=p;
-            count++;
-        }*/
-        /*void searchPerson(string _name){
-            for(int i = 0; i < count; i++) {
-                if(p.getName() == _name){
-                    return phonebook[i].getNumber();
-                }
-            }
-        }
-        
-        void deletePerson(Person p){
-            for(int i = 0; i < count; i++) {
-                if(p.getName() == _name){
-                    delete phonebook[i];
-                }
-            }
-        }
 
-        void print(){
-            for(int i = 0; i < count; i++){
-                cout << phonebook[i];
-            }
-        }*/
-        
 
-};
 
