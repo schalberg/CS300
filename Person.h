@@ -30,6 +30,7 @@ class Person {
         }
         //getters
         string getName(){
+
             return name;
         }
         int getPhone(){

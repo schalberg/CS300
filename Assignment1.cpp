@@ -14,7 +14,8 @@
 //
 //    Allow to perform operations on array of data such as 
 //    search for a person, create a new contact, or delete 
-//    an existing contact. (Also include a "Quit")  
+//    an existing contact. (Also include a "Quit") 
+//  
 
 #include <iostream>
 #include <fstream>
