@@ -33,6 +33,7 @@ int main(){
    string first, last, name;
    int phone;
    char selection;
+   //file i/o, allows input of data from .txt file
    ifstream inFile;
    inFile.open("C:\\Users\\thesc\\OneDrive\\Desktop\\phonebook.txt");
    while(!inFile.eof()){

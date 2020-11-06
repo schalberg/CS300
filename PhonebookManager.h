@@ -21,6 +21,8 @@ class Phonebook{
       ~Phonebook(){ //destructor
          delete[] pBook;
       }
+      //method to double the size of the array, putting the contents of the array in a doubly large temp array
+      //then migrating the data back to the original. the temp is then deleted
       void resizeArray(){
           capacity = capacity * 2; //double the potential size of the array
           Person *pBookTemp;

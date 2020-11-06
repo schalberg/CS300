@@ -14,19 +14,21 @@ class Person {
         string name;
         int phone;
     public:
-        Person(){
+        Person(){ //default constructor
             
         }
-        Person(string _name, int _phone){
+        Person(string _name, int _phone){ //parameterized constructor
             name = _name;
             phone = _phone;               
         }
-        void setName(string _name){
+        //setters
+        void setName(string _name){ 
             name = _name;            
         }
         void setPhone(int _phone){
             phone = _phone;
         }
+        //getters
         string getName(){
             return name;
         }
