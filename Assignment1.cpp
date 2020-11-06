@@ -67,8 +67,8 @@ int main(){
       cin >> a >> b;
       searchName = a + " " + b;
       //ensure that user input is formatted to match data in array
-      for(int i = 0; i < searchName.length(); i++){ 
-         temp = searchName[i];
+      for(int j = 0; j < searchName.length(); j++){ 
+         temp = searchName[j];
          temp = toupper(temp);
          result += temp;
       }
